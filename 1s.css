@@ -1,0 +1,131 @@
+:root{
+  --ink:#ffffff;
+  --muted:#e8f1ff;
+  --btnA:#ffd447;
+  --btnB:#f4a701;
+  --btnBorder:#b06a00;
+  --shadow:rgba(0,0,0,.5);
+  --captcha-bg:#fff;
+  --captcha-border:#d3d3d3;
+  --captcha-text:#1f2328;
+  --captcha-muted:#6b7280;
+
+  --ok:#22c55e; /* completed */
+}
+
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Poppins',sans-serif;
+  background:url("https://cdn.jsdelivr.net/gh/lib-devtools/supercell/bq.jpeg") center/cover no-repeat fixed;
+  color:#fff;text-align:center;
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:-1;
+}
+
+/* PAGE WRAPPER */
+.page{max-width:480px;margin:auto;padding:12px 14px 30px;position:relative;z-index:1}
+
+/* Logo + subtitle */
+.logo{width:min(68vw,220px);margin:15px auto 0}
+.tagline{color:#fff;font-size:17px;margin:4px 0 10px;font-weight:600}
+
+/* 3-STEP BLOCK */
+.steps{
+  margin:10px auto 12px;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:12px 14px;
+  width:95%;
+  box-shadow:0 8px 22px rgba(0,0,0,.28);
+}
+.steps ul{list-style:none;display:grid;gap:10px}
+.step{display:flex;align-items:center;gap:10px;justify-content:center}
+.step .icon{font-size:20px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.step span{font-size:16px}
+.step.done{
+  background: linear-gradient(180deg, rgba(34,197,94,.16), rgba(34,197,94,.10));
+  border:1px solid rgba(34,197,94,.35);
+  border-radius:10px;
+  padding:8px 10px;
+}
+.step.done .icon{color:var(--ok)}
+.badge-ok{
+  margin-left:8px;font-size:12px;font-weight:700;color:#b7f7cf;
+  background:rgba(34,197,94,.25);border:1px solid rgba(34,197,94,.45);
+  padding:3px 8px;border-radius:999px;
+}
+
+/* QR — FULL */
+.qr-box{
+  background:#fff;border-radius:14px;overflow:hidden;
+  display:inline-block;box-shadow:0 10px 28px rgba(0,0,0,.34);
+  width:min(360px,96%); /* bigger, responsive */
+  margin-bottom:10px;
+}
+.qr-box img{width:100%;height:auto;display:block}
+
+/* CTA image button */
+.img-btn{
+  background:transparent;border:none;padding:0;margin:14px auto 8px;
+  width:min(720px,96%);display:block;cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.35);
+  border-radius:14px;overflow:hidden;
+}
+.img-btn img{width:100%;height:auto;display:block}
+.img-btn:active{transform:translateY(2px)}
+
+/* Store buttons */
+.download-title{font-size:15px;margin:8px 0 8px;font-weight:600}
+.store-buttons a img{
+  width:250px;max-width:92%;margin:auto;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.40));border-radius:8px;
+}
+#appstore,#playstore{display:none}
+
+/* Hero */
+.hero{width:min(65vw,300px);margin:18px auto 0;filter:drop-shadow(0 12px 26px rgba(0,0,0,.45))}
+
+/* CAPTCHA */
+.captcha-wrap{margin:14px auto 0;width:92%;max-width:375px;transform-origin:top center}
+.captcha{
+  width:100%;height:65px;background:var(--captcha-bg);
+  border:1px solid var(--captcha-border);border-radius:1px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.cb{display:flex;align-items:center;gap:12px;user-select:none}
+.checkbox{
+  width:28px;height:28px;border:2px solid #bfbfbf;border-radius:4px;background:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  position:relative;flex:0 0 28px;transition:border-color .12s,background .12s;
+}
+.checkbox.loading{border-color:transparent;background:transparent}
+.checkbox .inner{width:20px;height:20px;border-radius:2px;background:#fff;display:flex;align-items:center;justify-content:center}
+.cb .label{color:var(--captcha-text);font-size:15px;white-space:nowrap}
+.brand{display:flex;flex-direction:column;align-items:center;line-height:1}
+.brand .logo-mini{width:28px;height:28px;margin-bottom:4px}
+.brand .recap{font-size:10px;color:var(--captcha-muted);margin-bottom:2px}
+.brand .links{font-size:10px;color:var(--captcha-muted)}
+.brand .links a{color:var(--captcha-muted);text-decoration:none}
+.brand .links a:hover{text-decoration:underline}
+
+/* Spinner */
+.spin-wrap{width:24px;height:24px;display:block;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* appear */
+.captcha-wrap.hidden{display:none}
+.captcha-wrap.show{display:block;animation:fadeIn 220ms ease both,dropIn 220ms cubic-bezier(.2,.8,.2,1)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes dropIn{from{transform:translateY(-8px) scale(.995)}to{transform:translateY(0) scale(1)}}
+
+@media (max-width:480px){
+  .captcha{height:56px;padding:8px}
+  .cb .label{font-size:14px}
+  .brand .recap,.brand .links{font-size:9px}
+}
